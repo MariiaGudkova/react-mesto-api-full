@@ -1,13 +1,16 @@
 const { allowedCors, DEFAULT_ALLOWED_METHODS } = require('../utils/constants');
 
 // eslint-disable-next-line consistent-return
-function handleCors(req, res) {
+function handleSimpleCors(req, res, next) {
   const { origin } = req.headers;
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
-    return res.end();
   }
+  next();
+}
 
+// eslint-disable-next-line consistent-return
+function handleСomplexCors(req, res) {
   const { method } = req;
   const requestHeaders = req.headers['access-control-request-headers'];
 
@@ -18,4 +21,4 @@ function handleCors(req, res) {
   }
 }
 
-module.exports = { handleCors };
+module.exports = { handleSimpleCors, handleСomplexCors };

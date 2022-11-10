@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/index');
-const { handleCors } = require('./middlewares/handleCors');
+const { handleSimpleCors, handleСomplexCors } = require('./middlewares/handleCors');
 require('dotenv').config();
 
 const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
@@ -24,7 +24,8 @@ app.use(express.json());
 app.use(apiLimiter);
 app.use(helmet());
 
-app.use(handleCors);
+app.use(handleSimpleCors);
+app.use(handleСomplexCors);
 app.use(requestLogger);
 app.use(routes);
 
