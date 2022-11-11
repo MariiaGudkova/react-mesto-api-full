@@ -83,8 +83,7 @@ class Api {
 
 const jwt = localStorage.getItem("jwt");
 const api = new Api({
-  // baseUrl: "https://api.mesto.project.gudkova.nomoredomains.icu",
-  baseUrl: "http://localhost:5000",
+  baseUrl: "https://api.mesto.project.gudkova.nomoredomains.icu",
   headers: {
     'Accept': 'application/json',
     "Content-Type": "application/json",
