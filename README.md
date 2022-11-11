@@ -1,6 +1,6 @@
 # **Проект сервис Mesto: настройка и деплой бэкенда** <img src="https://media.giphy.com/media/9RL6QuG8k4Gco8pyFH/giphy.gif" width="70" height="70">
 
-<img src="https://drive.google.com/file/d/14V7vQEXZ-LGifF3-8txsT-_jcexFVQls/view?usp=sharing">
+<img src="https://media.giphy.com/media/u30KaBrQyRhPvic1gX/giphy.gif">
 
 Сервис Mesto включает в себя фронтенд(https://github.com/MariiaGudkova/react-mesto-auth) и бэкенд(https://github.com/MariiaGudkova/express-mesto-gha) части приложения со следующими возможностями: авторизация и регистрация пользователей, операции с карточками и пользователями.
 Бэкенд расположен в директории backend, а фронтенд - в frontend. 
