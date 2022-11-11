@@ -1,3 +1,5 @@
+import {BASE_URL} from './constants.js';
+
 class Api {
   constructor({ baseUrl, headers}) {
     this._baseUrl = baseUrl;
@@ -83,7 +85,7 @@ class Api {
 
 const jwt = localStorage.getItem("jwt");
 const api = new Api({
-  baseUrl: "https://api.mesto.project.gudkova.nomoredomains.icu",
+  baseUrl: BASE_URL,
   headers: {
     'Accept': 'application/json',
     "Content-Type": "application/json",

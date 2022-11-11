@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.mesto.project.gudkova.nomoredomains.icu";
+import {BASE_URL} from './constants.js';
 
 export const register = (password, email) => {
   return fetch(`${BASE_URL}/signup`, {
