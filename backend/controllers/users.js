@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
 const BadRequestError = require('../errors/bad_request_err');
 const NotFoundError = require('../errors/notfound_err');
 const ConflictError = require('../errors/conflict_err');
@@ -102,6 +101,7 @@ const updateUserProfileAvatar = (req, res, next) => {
 };
 
 const login = (req, res, next) => {
+  const { NODE_ENV, JWT_SECRET } = process.env;
   const { email, password } = req.body;
   User.findUserByCredentials(email, password)
     .then((user) => {
