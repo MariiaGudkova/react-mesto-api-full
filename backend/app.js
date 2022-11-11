@@ -5,10 +5,10 @@ const helmet = require('helmet');
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/index');
-const { handleSimpleCors, handleСomplexCors } = require('./middlewares/handleCors');
+const { handleCors } = require('./middlewares/handleCors');
 require('dotenv').config();
 
-const { PORT = 3000, MONGO_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
+const { PORT = 5000, MONGO_URL = 'mongodb://localhost:27017/mestodb' } = process.env;
 const app = express();
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -24,8 +24,7 @@ app.use(express.json());
 app.use(apiLimiter);
 app.use(helmet());
 
-app.use(handleSimpleCors);
-app.use(handleСomplexCors);
+app.use(handleCors);
 app.use(requestLogger);
 app.use(routes);
 

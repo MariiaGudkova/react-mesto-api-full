@@ -1,5 +1,5 @@
 class Api {
-  constructor({ baseUrl, headers }) {
+  constructor({ baseUrl, headers}) {
     this._baseUrl = baseUrl;
     this._headers = headers;
     this._getJsonOnError = this._getJsonOnError.bind(this);
@@ -14,8 +14,9 @@ class Api {
 
   getUserInfo = () => {
     return fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
       headers: this._headers,
-    }).then(this._getJsonOnError);
+    }).then(this._getJsonOnError).then(res => res.data);
   };
 
   createUserInfo = (name, about) => {
@@ -23,7 +24,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ name, about }),
-    }).then(this._getJsonOnError);
+    }).then(this._getJsonOnError).then(res => res.data);;
   };
 
   createUserAvatar = (avatar) => {
@@ -31,13 +32,14 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({ avatar }),
-    }).then(this._getJsonOnError);
+    }).then(this._getJsonOnError).then(res => res.data);;
   };
 
   getInitialCards = () => {
     return fetch(`${this._baseUrl}/cards`, {
+      method: "GET",
       headers: this._headers,
-    }).then(this._getJsonOnError);
+    }).then(this._getJsonOnError).then(res => res.data);
   };
 
   createUserCard = (name, link) => {
@@ -45,14 +47,14 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({ name, link }),
-    }).then(this._getJsonOnError);
+    }).then(this._getJsonOnError).then(res => res.data);;
   };
 
   deleteUserCard = (id) => {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._getJsonOnError);
+    }).then(this._getJsonOnError).then(res => res.data);;
   };
 
   changeLikeCardStatus = (id, isliked) => {
@@ -64,22 +66,29 @@ class Api {
       method: "PUT",
       headers: this._headers,
       body: JSON.stringify({ id }),
-    }).then(this._getJsonOnError);
+    }).then(this._getJsonOnError).then(res => res.data);;
   };
 
   deleteLike = (id) => {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(this._getJsonOnError);
+    }).then(this._getJsonOnError).then(res => res.data);;
   };
-}
 
+  updateToken = (jwt) => {
+    this._headers['Authorization'] = `Bearer ${jwt}`;
+  };
+};
+
+const jwt = localStorage.getItem("jwt");
 const api = new Api({
-  baseUrl: "https://api.mesto.project.gudkova.nomoredomains.icu",
+  // baseUrl: "https://api.mesto.project.gudkova.nomoredomains.icu",
+  baseUrl: "http://localhost:5000",
   headers: {
     'Accept': 'application/json',
     "Content-Type": "application/json",
+    'Authorization': `Bearer ${jwt}`,
   },
 });
 

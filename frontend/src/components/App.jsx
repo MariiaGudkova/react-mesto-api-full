@@ -138,14 +138,13 @@ function App() {
   }
 
   async function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     try {
       const newCard = await api.changeLikeCardStatus(card._id, !isLiked);
 
       const updatedСards = cards.map((c) => {
         return c._id === card._id ? newCard : c;
       });
-
       setCards(updatedСards);
     } catch (e) {
       console.error();
@@ -153,7 +152,7 @@ function App() {
   }
 
   async function handleCardDelete(card) {
-    const isOwn = card.owner._id === currentUser._id;
+    const isOwn = card.owner === currentUser._id;
     if (isOwn) {
       try {
         await api.deleteUserCard(card._id);
@@ -203,6 +202,7 @@ function App() {
       setAuthorizationSuccess(true);
       setLoggedIn(true);
       setIsAuthorization(true);
+      api.updateToken(response.token);
       history.push(routes.baseRoute);
     }
   }
@@ -223,7 +223,7 @@ function App() {
         .then((res) => {
           if (res) {
             setLoggedIn(true);
-            setUserEmail(res?.data?.email);
+            setUserEmail(res.data.email);
             history.push(routes.baseRoute);
           }
         })

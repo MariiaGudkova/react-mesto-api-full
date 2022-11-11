@@ -1,6 +1,7 @@
 import React from "react";
 import RegistrationForm from "./RegistrationForm.jsx";
 import { useForm } from "../hooks/useForm.jsx";
+import { routes } from "../utils/routes.js";
 
 function Login(props) {
   const { onAthorizationSubmit, emailRegex } = props;
@@ -18,6 +19,7 @@ function Login(props) {
       buttonText="Войти"
       onSubmit={handleSubmit}
       subtitleText=""
+      linkAdress={routes.baseRoute}
     >
       <input
         className="form__input form__input_email"

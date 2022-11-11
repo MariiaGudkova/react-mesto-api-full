@@ -8,6 +8,9 @@ const SERVER_ERROR_CODE = 500;
 const allowedCors = [
   'http://mesto.project.gudkova.nomoredomains.icu',
   'https://mesto.project.gudkova.nomoredomains.icu',
+  'localhost:3000',
+  'http://localhost:3000',
+  'https://localhost:3000',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
