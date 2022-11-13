@@ -203,6 +203,7 @@ function App() {
       setLoggedIn(true);
       setIsAuthorization(true);
       api.updateToken(response.token);
+      setUserEmail(email);
       history.push(routes.baseRoute);
     }
   }
